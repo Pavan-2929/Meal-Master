@@ -2,7 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: black;
-    color: #EDEDED;
+body {
+  background-color: black;
+  color: #ededed;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  @apply block w-full mb-6 rounded-xl text-black;
+  @apply border p-2 border-snow bg-gray text-black;
+}
+
+/* RegisterPage.css */
+input::placeholder {
+  color: black; /* Change placeholder color here */
 }
