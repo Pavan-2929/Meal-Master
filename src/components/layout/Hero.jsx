@@ -29,8 +29,8 @@ export default function Hero() {
           src={"/pizza.png"}
           width={500}
           height={500}
-          className="w-72 h-auto ml-auto mr-14"
-          alt={"pizza"}
+          className="h-auto ml-auto mr-14 w-72"
+          alt={"Delicious pizza"}
         />
       </div>
     </section>

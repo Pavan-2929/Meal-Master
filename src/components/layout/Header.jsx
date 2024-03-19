@@ -7,7 +7,8 @@ import { signOut } from "next-auth/react";
 
 const Header = () => {
   const session = useSession();
-  console.log(session);
+  const userData = session.data?.user;
+  const userName = userData?.name;
   const status = session.status;
   return (
     <div className="bg-black flex justify-around p-4 items-center">
@@ -41,13 +42,21 @@ const Header = () => {
         </Link>
 
         {session && status === "authenticated" ? (
-          <button
-            type="button"
-            onClick={() => signOut()}
-            className="bg-red rounded-full p-2 px-4 text-white ml-4"
-          >
-            Logout
-          </button>
+          <>
+            <Link
+              href={"/profile"}
+              className="bg-charcoal shadow-full rounded-full p-2 px-4 text-white ml-14"
+            >
+              {userName}
+            </Link>
+            <button
+              type="button"
+              onClick={() => signOut()}
+              className="bg-red rounded-full p-2 px-4 text-white"
+            >
+              Logout
+            </button>
+          </>
         ) : (
           <Link
             href={"/login"}

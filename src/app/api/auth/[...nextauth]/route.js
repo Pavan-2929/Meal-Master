@@ -40,11 +40,11 @@ export const authOptions = {
           });
 
         const user = await User.findOne({ email });
-        console.log(user);
         const passwordOk =
-          user && bcryptjs.compareSync(password, user.password);
-
+        user && bcryptjs.compareSync(password, user.password);
+        
         if (passwordOk) {
+          console.log(user);
           return user;
         }
         return null;

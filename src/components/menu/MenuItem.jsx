@@ -5,7 +5,7 @@ const MenuItem = () => {
   return (
     <div className="bg-black text-center py-4 hover:bg-charcoal hover:cursor-pointer rounded-md hover:shadow-sm hover:shadow-snow">
       <div className="flex justify-center mb-4">
-        <Image src={"/pizza.png"} height={150} width={150}></Image>
+        <Image src={"/pizza.png"} height={150} width={150} alt="Pizza" className="h-auto w-auto"></Image>
       </div>
       <h4 className="font-semibold text-sm">Pepperoni pizza</h4>
       <p className="text-gray text-sm w-[80%] mx-auto">

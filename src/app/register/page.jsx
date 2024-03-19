@@ -6,17 +6,21 @@ import axios from "axios";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
+      setIsLoading(true);
       const response = await axios.post("/api/register", formData);
       console.log(response);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -55,9 +59,10 @@ const RegisterPage = () => {
           <div className="flex justify-center text-[1.1rem]">
             <button
               type="submit"
-              className="bg-gray text-black px-4 py-2 rounded-full hover:bg-snow transition-all mt-4"
+              disabled={isLoading}
+              className="bg-gray text-black px-4 py-2 rounded-full hover:bg-snow transition-all mt-4 disabled:opacity-60"
             >
-              Register
+              {isLoading ? "Loading" : "Register"}
             </button>
           </div>
           <div className="text-snow text-center my-2">
@@ -67,7 +72,7 @@ const RegisterPage = () => {
             <button
               className="bg-gray text-black px-4 py-2 rounded-full hover:bg-snow transition-all mb-4"
               type="button"
-              onClick={() => signIn("google", {callbackUrl: "/"})}
+              onClick={() => signIn("google", { callbackUrl: "/" })}
             >
               Login with Google
             </button>

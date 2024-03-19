@@ -6,20 +6,22 @@ import {signIn} from 'next-auth/react'
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({});
+  const [isLoading, setIsLoading] = useState(false)
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
 const handleSubmit = async (e) => {
+  setIsLoading(true);
   e.preventDefault();
-  console.log(formData);
 
   await signIn("credentials", {
     email: formData.email, 
     password: formData.password,
     callbackUrl: "/",
   });
+  setIsLoading(false);
 };
 
   return (
@@ -38,7 +40,7 @@ const handleSubmit = async (e) => {
             id="email"
             placeholder="Email"
             onChange={onChange}
-            />
+          />
           <input
             type="password"
             name="password"
@@ -47,8 +49,12 @@ const handleSubmit = async (e) => {
             onChange={onChange}
           />
           <div className="flex justify-center text-[1.1rem]">
-            <button type="submit" className="bg-gray text-black px-4 py-2 rounded-full hover:bg-snow transition-all mt-4">
-              Login
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="bg-gray text-black px-4 py-2 rounded-full hover:bg-snow transition-all mt-4 disabled:opacity-60"
+            >
+              {isLoading ? "Loading..." : "Login"}
             </button>
           </div>
           <div className="text-snow text-center my-2">
